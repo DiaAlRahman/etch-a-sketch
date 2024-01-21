@@ -1,0 +1,40 @@
+body{
+    background-color: blanchedalmond;
+}
+
+#logo{
+    display: flex;
+    justify-content: center;
+}
+
+#content-area, 
+#controls{
+    display: flex;
+    justify-content: space-around;
+}
+
+#controls{
+    flex-direction: column;
+    background-color: beige;
+    border: solid burlywood;
+    padding: 1rem;
+}
+
+.grid{
+    border: solid burlywood 5px;
+    padding: 1rem;
+    background-color: burlywood;
+}
+
+.top-left{
+    border-top: solid lightgray 5px;
+    border-left: solid lightgray 5px;
+}
+
+.bottom{
+    border-bottom: solid lightgray 5px;
+}
+
+.right{
+    border-right: solid lightgray 5px;
+}
