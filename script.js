@@ -1,12 +1,98 @@
-createGrid(16, 16);
 const color_picker = document.querySelector('.pen-color');
 const bg_color_picker = document.querySelector('.bg-color');
-const blocks = document.querySelectorAll('.grid-item');
 const colorFill = document.querySelector('.color-fill');
+const clear = document.querySelector('.clear');
+const rainbow = document.querySelector('.rainbow');
+const eraser = document.querySelector('.eraser');
+const slider = document.querySelector('.size-slider');
+const grid_lines = document.querySelector('.grid-lines');
 
-color_fill.addEventListener('click', () => {
+createGrid(16, 16);
+
+grid_lines.addEventListener('click', () => {
+    const blocks = document.querySelectorAll('.grid-item');
+    if (grid_lines.value === 'OFF') {
+        grid_lines.value = 'ON';
+        blocks.forEach((block) => {
+            block.id = 'borderless';
+        })
+        grid_lines.id = 'on-button';
+    }
+    else if (grid_lines.value === 'ON') {
+        grid_lines.value = 'OFF';
+        blocks.forEach((block) => {
+            block.removeAttribute('id');
+        })
+        grid_lines.removeAttribute('id');
+    }
+})
+
+eraser.addEventListener('click', () => {
+    const blocks = document.querySelectorAll('.grid-item');
+    if (eraser.value === 'OFF') {
+        eraser.value = 'ON';
+        console.log(eraser.value);
+        blocks.forEach((block) => {
+            block.addEventListener('mouseover', () => {
+                block.style.backgroundColor = bg_color_picker.value;
+            })
+        })
+        eraser.id = 'on-button';
+    }
+    else if (eraser.value === 'ON') {
+        eraser.value = 'OFF';
+        console.log(eraser.value);
+        blocks.forEach((block) => {
+            block.addEventListener('mouseover', () => {
+                block.style.backgroundColor = color_picker.value;
+            })
+        })
+        eraser.removeAttribute('id');
+    }
+})
+
+rainbow.addEventListener('click', () => {
+    const blocks = document.querySelectorAll('.grid-item');
+    if (rainbow.value === "OFF") {
+        rainbow.value = 'ON';
+        blocks.forEach((block) => {
+            block.addEventListener('mouseover', (e) => {
+                let r = Math.floor((Math.random() * 255));
+                let g = Math.floor((Math.random() * 255));
+                let b = Math.floor((Math.random() * 255));
+                e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+            })
+        })
+        rainbow.id = 'on-button';
+    }
+    else if (rainbow.value === 'ON') {
+        console.log(rainbow.value);
+        rainbow.value = 'OFF';
+        blocks.forEach((block) => {
+            block.addEventListener('mouseover', () => {
+                block.style.backgroundColor = color_picker.value;
+            });
+        })
+        rainbow.removeAttribute('id');
+        
+    }
+
+})
+
+clear.addEventListener('click', (e) => {
+    //fills up the entire grid with the bg color - hence "clearing" the canvas
+    colour_fill(bg_color_picker.value);
+})
+
+colorFill.addEventListener('click', () => {
+    const blocks = document.querySelectorAll('.grid-item');
+    colorFill.id = 'on-button';
+    //a button associated with filling up the entire grid with the pen color
     blocks.forEach((block) => {
-        color_fill()
+        block.addEventListener('click', () => {
+            colour_fill(color_picker.value);
+            colorFill.removeAttribute('id');
+        })
     })
 })
 
@@ -29,9 +115,11 @@ function createGrid(r, c) {
             block.setAttribute('class', 'grid-item');
 
             block.style.backgroundColor = 'white';
-            block.style.padding = '1rem';
             block.classList.add('top-left');
-            block.classList.add('block-shrink');
+            block_size = 600 / (slider.value);
+            block.style.height = `${block_size}px`;
+            block.style.width = block.style.height;
+            // block.style.padding = '1rem';
 
             if (j == r - 1) {
                 block.classList.add('right');
@@ -40,8 +128,8 @@ function createGrid(r, c) {
                 block.classList.add('bottom');
             }
 
-            block.addEventListener('mouseover', (event) => {
-                sketch(event, color_picker.value);
+            block.addEventListener('mouseover', () => {
+                block.style.backgroundColor = color_picker.value;
             });
 
             row.appendChild(block);
@@ -50,20 +138,14 @@ function createGrid(r, c) {
     }
 }
 
-function sketch(event, color) {
-    // seperating out functions is helping me modularize and actually focus on the smallest steps
-    // this one focuses on the core functionality of etching
-    event.target.style.backgroundColor = color;
-}
-
 function colour_fill(color) {
+    const blocks = document.querySelectorAll('.grid-item');
     //this one is for filling up all the blocks with a certain color
     blocks.forEach((block) => {
         block.style.backgroundColor = color;
     })
 }
 
-const slider = document.querySelector('.size-slider');
 const grid_size = document.querySelector('.grid-size');
 grid_size.textContent = `${slider.value} x ${slider.value}`;
 
@@ -79,5 +161,4 @@ function clearGrids() {
         block.remove();
     })
 }
-
 

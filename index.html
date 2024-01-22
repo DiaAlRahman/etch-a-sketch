@@ -14,13 +14,13 @@
 
     <div id="content-area">
         <div id="controls">
-            <div class="pen-color-wrapper">
-                <input class="pen-color" type="color" name="pen-color" value="#5C2828">
+            <div class="color-wrapper">
+                <input class="pen-color" type="color" name="pen-color">
                 <label for="pen-color">Pen Color</label>
             </div>
 
 
-            <div class="background-color-wrapper">
+            <div class="color-wrapper">
                 <input class="bg-color" type="color" name="bg-color" value="#FFFFFF">
                 <label for="bg-color">Background Color</label>
             </div>
@@ -28,16 +28,16 @@
             <button class="color-fill">Colour Fill</button>
             <button>Colour Grabber</button>
 
-            <button>Toggle Eraser</button>
-            <button>Toggle Rainbow</button>
+            <button class="eraser" value="OFF">Toggle Eraser</button>
+            <button class="rainbow" value="OFF">Toggle Rainbow</button>
             <button>Toggle Shading</button>
             <button>Toggle Lighten</button>
 
             <div class="grid-size"></div>
             <input class="size-slider" type="range" value="16" min="1" max="64">
-            <button>Toggle Grid Lines</button>
+            <button class="grid-lines" value="OFF">Toggle Grid Lines</button>
 
-            <button>Clear</button>
+            <button class="clear">Clear</button>
         </div>
 
         <div class="grid-wrapper">

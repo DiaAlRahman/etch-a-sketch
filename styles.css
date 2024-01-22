@@ -1,10 +1,11 @@
 body{
-    background-color: blanchedalmond;
+    background-color: #4F6F52;
 }
 
 #logo{
     display: flex;
     justify-content: center;
+    color: #D2E3C8;
 }
 
 #content-area, 
@@ -15,33 +16,38 @@ body{
 
 #controls{
     flex-direction: column;
-    background-color: beige;
-    border: solid burlywood;
+    background-color: #D2E3C8;
+    border: solid #86A789;
     padding: 1rem;
+    gap: 1rem;
 }
 
 .grid{
-    border: solid burlywood 5px;
+    border: solid #86A789 5px;
     padding: 1rem;
-    background-color: burlywood;
+    background-color: #86A789;
+}
+
+#borderless{
+    border: none;
+    margin: 0;
 }
 
 .top-left{
-    border-top: solid lightgray 5px;
-    border-left: solid lightgray 5px;
+    border-top: solid lightgray 1px;
+    border-left: solid lightgray 1px;
+    margin-top: -1px;
+    margin-left: -1px;
 }
 
 .bottom{
-    border-bottom: solid lightgray 5px;
+    border-bottom: solid lightgray 1px;
+    margin-bottom: -1px;
 }
 
 .right{
-    border-right: solid lightgray 5px;
-}
-
-.pen-color-wrapper{
-    display: flex;
-    gap: 1rem;
+    border-right: solid lightgray 1px;
+    margin-right: -1px;
 }
 
 .grid-wrapper {
@@ -50,9 +56,41 @@ body{
     flex-grow: 0;
 }
 
-
-/* Hopefully this works to shrink all the blocks maintaing the aspect ratio
-keeping the main grid wrapper withing 600x600px square */
-.block-shrink {
-
+#on-button{
+    color: #D2E3C8;
+    background-color: #4F6F52;
 }
+
+button{
+    background: none;
+    color: #4F6F52;
+    border: solid 1px #4F6F52;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+}
+
+.clear:active{    
+    color: #D2E3C8;
+    background-color: #4F6F52;
+}
+
+.color-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+label{
+    color: #4F6F52;
+    font-weight: 700;
+}
+
+.pen-color,
+.bg-color{
+    height: 36px;
+    overflow: hidden;
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    background: none;
+}
+
