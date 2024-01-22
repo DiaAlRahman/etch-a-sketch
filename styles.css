@@ -38,3 +38,21 @@ body{
 .right{
     border-right: solid lightgray 5px;
 }
+
+.pen-color-wrapper{
+    display: flex;
+    gap: 1rem;
+}
+
+.grid-wrapper {
+    max-width: 600px;
+    max-height: 600px;
+    flex-grow: 0;
+}
+
+
+/* Hopefully this works to shrink all the blocks maintaing the aspect ratio
+keeping the main grid wrapper withing 600x600px square */
+.block-shrink {
+
+}
