@@ -86,14 +86,26 @@ clear.addEventListener('click', (e) => {
 
 colorFill.addEventListener('click', () => {
     const blocks = document.querySelectorAll('.grid-item');
-    colorFill.id = 'on-button';
-    //a button associated with filling up the entire grid with the pen color
-    blocks.forEach((block) => {
-        block.addEventListener('click', () => {
-            colour_fill(color_picker.value);
-            colorFill.removeAttribute('id');
-        })
-    })
+    const fillGrids = () => {
+        colour_fill(color_picker.value);
+        colorFill.removeAttribute('id');
+    };
+
+    if (colorFill.value === "OFF") {
+        colorFill.value = "ON";
+        colorFill.id = 'on-button';
+        //a button associated with filling up the entire grid with the pen color
+        blocks.forEach((block) => {
+            block.addEventListener('click', fillGrids);
+        });
+
+    } else if (colorFill.value === "ON") {
+        colorFill.value = "OFF";
+        colorFill.removeAttribute('id');
+        blocks.forEach((block) => {
+            block.removeEventListener('click', fillGrids);
+        });
+    };
 })
 
 function createGrid(r, c) {
